@@ -119,7 +119,7 @@ if [ ! -f "/.dockerenv" ]; then
       ip addr flush dev "${N}" 2>/dev/null || true
       ip addr add "${IPRA[0]}/${IPRA[1]:-"255.255.255.0"}" dev "${N}" 2>/dev/null || true
       if [ -n "${IPRA[2]}" ]; then
-        ip route add default via "${IPRA[2]}" dev "${N}" 2>/dev/null || true
+        ip route replace default via "${IPRA[2]}" dev "${N}" 2>/dev/null || true
       fi
       DNSSRV="${IPRA[3]:-${IPRA[2]:-}}"
       if [ -n "${DNSSRV}" ]; then

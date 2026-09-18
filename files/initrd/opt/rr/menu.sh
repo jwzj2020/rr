@@ -2834,7 +2834,7 @@ function setStaticIP() {
                 ip addr flush dev ${N}
                 ip addr add ${address}/${netmask:-"255.255.255.0"} dev ${N}
                 if [ -n "${gateway}" ]; then
-                  ip route add default via ${gateway} dev ${N}
+                  ip route replace default via ${gateway} dev ${N}
                 fi
                 local DNSSRV="${dnsname:-${gateway}}"
                 if [ -n "${DNSSRV}" ]; then
